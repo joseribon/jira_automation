@@ -1,0 +1,43 @@
+# Python-specific ignores
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environment (if using virtualenv or venv)
+venv/
+env/
+.vscode/
+
+# Logs and temporary files
+*.log
+*.swp
+*.swo
+*.db
+*.sqlite3
+*.db-journal
+
+# Dependency directories (if not using a virtual environment)
+# Add these lines if you're not using venv/venv for dependencies
+#site-packages/
+#dist/
+#build/
+#eggs/
+#*.egg-info/
+#*.egg
+
+# IDE-specific files and directories
+.idea/
+.vscode/
+
+# Ignore configuration files with sensitive information (modify as needed)
+config.ini
+secrets.json
+
+# Ignore generated or compiled files
+*.exe
+*.dll
+*.out
+
+# Ignore local development settings (modify as needed)
+key.py
