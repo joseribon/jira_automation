@@ -40,4 +40,4 @@ secrets.json
 *.out
 
 # Ignore local development settings (modify as needed)
-key.py
+keys.py
