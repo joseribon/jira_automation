@@ -51,13 +51,14 @@ for n in range(len(issues_data.index)):
         project = project_key,
         summary = summary,
         description = description,
+        customfield_10026 = sps,
         issuetype = {'name': issue_type},
         reporter = {'id': reporter},
         customfield_10014 = epic,
+        labels = ['NO-QA'] if epic != "ILFI-8" else []
     )
 
     print(f"Issue {new_issue.key} has been successfully created")
-
 
 
 
