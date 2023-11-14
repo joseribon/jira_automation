@@ -87,6 +87,17 @@ def get_addition_date(issue: JIRA) -> date:
     return addition_date
 
 # Check if it is Loka Friday off
+def is_loka_friday(input_date: datetime) -> bool:
+    # Reference date: First Loka Friday in 2023 -> 6-January
+
+    if type(input_date) == datetime:
+        input_date = input_date.date()
+
+    reference_date = datetime(2023, 1, 6).date()
+    delta = input_date - reference_date
+    is_friday_off = delta.days % 14 == 0 and input_date.weekday() == 4
+
+    return is_friday_off
 
 
 # Function to get business hours between two time stamps
@@ -146,4 +157,5 @@ def get_sprint(issue: JIRA) -> str:
     return sprint
 
 # DF function to convert list to dictionary for epics processing
+ok=1
 
