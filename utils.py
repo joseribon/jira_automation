@@ -108,7 +108,7 @@ def business_hours(start: datetime, end: datetime, country='US', schedule_start=
     total_hours = 0.0
 
     while current_date <= end_date:
-        if current_date.weekday() < 5 and current_date not in holiday_list:
+        if current_date.weekday() < 5 and current_date not in holiday_list and not is_loka_friday(current_date):
             work_start = datetime.combine(current_date, time(schedule_start, 0))
             work_end = datetime.combine(current_date, time(schedule_end, 0))
 
