@@ -3,7 +3,6 @@ from jira import JIRA
 from datetime import datetime
 from keys import alicia, jira_user
 from utils import *
-#from os import system as terminal
 
 
 # Get User extraction preferences (historical/sprint)
@@ -66,7 +65,7 @@ for issue in issues:
         'Hours In QA': get_status_hours(issue,'QA'),
         })
 df = DataFrame.from_records(issues_data)
-df.to_excel('Sprint 3 - START.xlsx', index=False)
+df.to_excel('Sprint 4 - START.xlsx', index=False)
 print(f'Jira {scope} data successfully extracted.')
 
 
