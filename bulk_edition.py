@@ -15,25 +15,24 @@ options = {'server': server}
 impactica_jira = JIRA(options, basic_auth=(user,keys))
 
 # Read input data from Excel
-issues_data = pd.read_excel('create_tickets.xlsx')
+#issues_data = pd.read_excel('create_tickets.xlsx')
 jql = 'project=ILFI'
 
 issues = impactica_jira.search_issues(jql_str=jql, maxResults=False, expand='changelog')
 
-for n in range(len(issues_data.index)):
-    for issue in issues:
-        summary = issue.fields.summary
-        key = issue.key
-        if issues_data.iloc[n]['Summary'] == summary:
-            description = issues_data.iloc[n]['Description']
-            description = None if pd.isna(description) else description
-            acceptance = issues_data.iloc[n]['Acceptance Criteria']
-            acceptance = process_criteria(acceptance)
-            if not pd.isna(acceptance):
-                description += f'\n\n{acceptance}'
-            
-            issue.update(fields={'description': description})
-            print(f"{key} issues' acceptance criteria has been added.")
+
+for issue in issues:
+    epic = get_epic(issue)
+    key = issue.key
+    issue_type = issue.fields.issuetype.name
+    labels_list = issue.fields.labels
+
+
+    # Insert edition logic
+    if epic in ["BackEnd","DevOps"] and issue_type in ['Task','Sub-task'] and 'NO-QA' not in labels_list:
+        labels_list.append('NO-QA')
+        issue.update(fields={'labels': labels_list})
+        print(f"{key} issues NO-QA tag has been added.")
 
 
 # Close Jira client instance
