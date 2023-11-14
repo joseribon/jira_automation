@@ -157,5 +157,3 @@ def get_sprint(issue: JIRA) -> str:
     return sprint
 
 # DF function to convert list to dictionary for epics processing
-ok=1
-
